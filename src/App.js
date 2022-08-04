@@ -4,7 +4,23 @@ import Web3 from 'web3';
 
 class App extends Component {
   
-  state = { web3: null, accounts: null };
+  state = { 
+    web3: null, 
+    accounts: null, 
+    sig: null,
+    api: 'https://',
+    msg: 'Sign this message to check in.',
+    user: null,
+    email: null,
+    address1: null,
+    address2: null,
+    city: null,
+    state: null,
+    postcode: null,
+    country: null,
+    product: null,
+    clamied: null
+  };
 
   componentDidMount = async () => {
     try {
@@ -32,28 +48,68 @@ class App extends Component {
   };
 
   doCheckIn = async () => {
-    const { web3, accounts } = this.state;
+    const { web3, accounts, sig, api, msg, user } = this.state;
     try {
-      var url = '/api/user/';
-      var message = 'Sign this message to check in.';
-      var signature = await web3.eth.personal.sign(message, accounts[0])
+      var url = api + '/api/user/';
+      var signature = await web3.eth.personal.sign(msg, accounts[0])
 
       console.log(accounts[0])
-      console.log(message)
-      console.log(signature)
+      console.log(msg)
+      console.log(msg)
       
       const options = {
         method: 'POST',
-        body: JSON.stringify({ message: message, wallet: accounts[0], signature: signature })
+        body: JSON.stringify({ message: msg, wallet: accounts[0], signature: signature })
       };
       
       const response = await fetch(url,options)
       const json = await response.json()
       console.log(json)
+
+      this.setState({sig: signature, user: json})
     } catch (error) {
       console.log(error);
     }
   };
+
+  doClaim = async () => {
+    const { accounts, sig, api, msg, email, address1, address2, city, state, postcode, country, product } = this.state;
+    try {
+      var url = api + '/api/claim/';
+      
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(
+          { 
+            message: msg, 
+            wallet: accounts[0], 
+            signature: sig,
+            email: email,
+            address1: address1,
+            address2: address2,
+            city: city,
+            state: state,
+            postcode: postcode,
+            country: country,
+            product: product
+          }
+        )
+      };
+      
+      const response = await fetch(url,options)
+      const json = await response.json()
+      console.log(json)
+      if (json.success) {
+        this.setState({claimed: true})
+      } else {
+        alert(json.message);
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   render() {
     const self = this;
@@ -73,12 +129,33 @@ class App extends Component {
               </button>
             </div>
           }
-          {this.state.accounts && !this.state.leaderboard &&
+          {this.state.accounts && !this.state.user && !this.state.leaderboard &&
             <div>
               <h3>Get user data</h3>
               <button onClick={(e) => this.doCheckIn()}>
                   Get User Data
               </button>
+            </div>
+          }
+          {this.state.user && !this.state.claimed &&
+            <div>
+              <h3>Claim your merch {this.state.user.firstname}!</h3>
+              <input type="text" placeholder="Email" onChange={e => this.setState({email: e.target.value})} /><br/>
+              <input type="text" placeholder="Address 1" onChange={e => this.setState({address1: e.target.value})} /><br/>
+              <input type="text" placeholder="Address 2" onChange={e => this.setState({address2: e.target.value})} /><br/>
+              <input type="text" placeholder="City" onChange={e => this.setState({city: e.target.value})} /><br/>
+              <input type="text" placeholder="State" onChange={e => this.setState({state: e.target.value})} /><br/>
+              <input type="text" placeholder="Postcode" onChange={e => this.setState({postcode: e.target.value})} /><br/>
+              <input type="text" placeholder="Country" onChange={e => this.setState({country: e.target.value})} /><br/>
+              <input type="text" placeholder="Product" onChange={e => this.setState({product: e.target.value})} /><br/>
+              <button onClick={(e) => this.doClaim()}>
+                Claim Merch
+              </button>
+            </div>
+          }
+          {this.state.claimed &&
+            <div>
+              <h3>Merch claimed!</h3>
             </div>
           }
         </div>
