@@ -1,4 +1,4 @@
-# react_api_signed_request
+# React Web3 API Signed Request
 
 + Run command
     + npm install
