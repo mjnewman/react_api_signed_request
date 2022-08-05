@@ -136,6 +136,7 @@ class App extends Component {
         )
       };
       
+      
       const response = await fetch(url,options)
       const json = await response.json()
       console.log(json)
@@ -149,6 +150,7 @@ class App extends Component {
       console.log(error);
     }
   };
+  
 
   render() {
     const self = this;
@@ -201,9 +203,9 @@ class App extends Component {
         <section className="py-5">
           <div className="container">
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
-                  <div className="col my-5">
+                  <div className="col my-5 text-center">
                       <h2 className="">Chose your ideal activity</h2>
-                      <h3 className="">To unlock access to cool merch!</h3>
+                      <p className="">To unlock access to cool merch!</p>
                   </div>
               </div>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
@@ -251,43 +253,49 @@ class App extends Component {
           </div>
 
           <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
-                  <div className="col my-5">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-5 justify-content-center">
+              <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                      </div>
+                </div>
+                <div className="col my-5 ml-5 mt-5">
                       <h2 className="">Awesome!</h2>
                       <p className="">You just got a beach towel!</p>
                       <p className="">Fill out the information below to claim your gift</p>
                   </div>
               </div>
+              
               <div className="row row-cols-md-2 g-3 justify-content-center">
                   <div className="col my-5 mx-5">
                       <div className="my-3">
-                          <input type="text" className="form-control" placeholder="First Name"/>
+                          <input type="text" className="form form-control" placeholder="First Name"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="Last Name"/>
+                          <input type="text" className="form form-control" placeholder="Last Name"/>
                       </div>
                       <div className="my-4">
-                          <input type="email" className="form-control" placeholder="Email Address"/>
+                          <input type="email" className="form form-control" placeholder="Email Address"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="Address 1"/>
+                          <input type="text" className="form form-control" placeholder="Address Line 1"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="Address 2"/>
+                          <input type="text" className="form form-control" placeholder="Address Line 2"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="City"/>
+                          <input type="text" className="form form-control" placeholder="City"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="State"/>
+                          <input type="text" className="form form-control:focus form-control" placeholder="State"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="ZIP / Postal Code"/>
+                          <input type="text" className="form form-control" placeholder="ZIP / Postal Code"/>
                       </div>
                       <div className="my-4">
-                          <input type="text" className="form-control" placeholder="Country"/>
+                          <input type="text" className="form form-control" placeholder="Country"/>
                       </div>
-                      <button type="submit" className="btn btn-primary">Submit</button>
+                      <button type="button" className="btn btn-primary">Submit</button>
                   </div>
               </div>
           </div>
@@ -295,7 +303,7 @@ class App extends Component {
 
         <footer className="text-muted py-3">
             <div className="container">
-                Album example is &copy; Bootstrap, but please download and customize it for yourself!
+               PepsiCo 2022
             </div>
         </footer>
       </div>
