@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
 
+import { Container, Row, Col, Card, Button, Table } from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+
 class App extends Component {
   
   state = { 
@@ -147,57 +152,152 @@ class App extends Component {
 
   render() {
     const self = this;
+
+    // {!this.state.accounts && this.state.web3 &&
+    //   <button onClick={this.doWalletConnect} className="btn btn-lg btn-secondary fw-bold">Learn more</button>
+    // }
     return (
       <div>
-        {!this.state.web3 &&
-          <div>
-            <h2>No Wallet Detected</h2>
-            <p>Please enable a wallet such as Metamask</p>
+
+        <header>
+          <div className="collapse bg-dark">
+              <div className="container">
+                  <div className="row">
+                      <div className="col-sm-8 col-md-7 py-4">
+                          <h4 className="text-white">Welcome!</h4>
+                          <p className="text-muted">Connect your wallet to immerse yourself into web3</p>
+                      </div>
+                  </div>
+              </div>
           </div>
-        }
-        {!this.state.accounts && this.state.web3 &&
-          <div>
-            <h3>Connect your wallet to get started</h3>
-            <button onClick={this.doWalletConnect}>
-              Connect Your Wallet
-            </button>
+          <div className="navbar navbar-dark bg-dark sticky-top">
+              <div className="container">
+                  <span className="navbar-brand d-flex align-items-center">
+                      <img src="media/logo.png" className="logo"/>
+                  </span>
+                  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                      <span className="navbar-toggler-icon"></span>
+                  </button>
+              </div>
           </div>
-        }
-        {this.state.poap === false &&
-          <div>
-            <h2>No POAP Detected</h2>
-            <p>Please Claim Your POAP</p>
+        </header>
+
+        <section className="py-5 text-center cover">
+            <div className="container">
+              <div className="row py-lg-5">
+                  <div className="col-lg-6 col-md-8 mx-auto">
+                      <h1 className="">Welcome!</h1>
+                      <p className="lead">Connect your wallet to immerse yourself into web3</p>
+                      {!this.state.accounts && this.state.web3 &&
+                        <p>
+                            <button onClick={this.doWalletConnect} className="btn btn-primary my-2">Connect Your Wallet</button>
+                        </p>
+                      }
+                  </div>
+              </div>
+            </div>
+        </section>
+        
+        <section className="py-5">
+          <div className="container">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+                  <div className="col my-5">
+                      <h2 className="">Chose your ideal activity</h2>
+                      <h3 className="">To unlock access to cool merch!</h3>
+                  </div>
+              </div>
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+                  <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                          <div className="card-body text-center">
+                              <p className="card-text text-muted">Beach Day</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                          <div className="card-body text-center">
+                              <p className="card-text text-muted">Beach Day</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                          <div className="card-body text-center">
+                              <p className="card-text text-muted">Beach Day</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                          <div className="card-body text-center">
+                              <p className="card-text text-muted">Beach Day</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col">
+                      <div className="card shadow-sm">
+                          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/></svg>
+                          <div className="card-body text-center">
+                              <p className="card-text text-muted">Beach Day</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        }
-        {this.state.poap && this.state.accounts && !this.state.user && !this.state.leaderboard &&
-          <div>
-            <h3>Declined Signed Request</h3>
-            <button onClick={(e) => this.doCheckIn()}>
-              Please Check In
-            </button>
+
+          <div className="container">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 justify-content-center">
+                  <div className="col my-5">
+                      <h2 className="">Awesome!</h2>
+                      <p className="">You just got a beach towel!</p>
+                      <p className="">Fill out the information below to claim your gift</p>
+                  </div>
+              </div>
+              <div className="row row-cols-md-2 g-3 justify-content-center">
+                  <div className="col my-5 mx-5">
+                      <div className="my-3">
+                          <input type="text" className="form-control" placeholder="First Name"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="Last Name"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="email" className="form-control" placeholder="Email Address"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="Address 1"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="Address 2"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="City"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="State"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="ZIP / Postal Code"/>
+                      </div>
+                      <div className="my-4">
+                          <input type="text" className="form-control" placeholder="Country"/>
+                      </div>
+                      <button type="submit" className="btn btn-primary">Submit</button>
+                  </div>
+              </div>
           </div>
-        }
-        {this.state.poap && this.state.user && !this.state.claimed &&
-          <div>
-            <h3>Claim your merch {this.state.user.firstname}!</h3>
-            <input type="text" placeholder="Email" onChange={e => this.setState({email: e.target.value})} /><br/>
-            <input type="text" placeholder="Address 1" onChange={e => this.setState({address1: e.target.value})} /><br/>
-            <input type="text" placeholder="Address 2" onChange={e => this.setState({address2: e.target.value})} /><br/>
-            <input type="text" placeholder="City" onChange={e => this.setState({city: e.target.value})} /><br/>
-            <input type="text" placeholder="State" onChange={e => this.setState({state: e.target.value})} /><br/>
-            <input type="text" placeholder="Postcode" onChange={e => this.setState({postcode: e.target.value})} /><br/>
-            <input type="text" placeholder="Country" onChange={e => this.setState({country: e.target.value})} /><br/>
-            <input type="text" placeholder="Product" onChange={e => this.setState({product: e.target.value})} /><br/>
-            <button onClick={(e) => this.doClaim()}>
-              Claim Merch
-            </button>
-          </div>
-        }
-        {this.state.claimed &&
-          <div>
-            <h3>Merch claimed!</h3>
-          </div>
-        }
+      </section>
+
+        <footer className="text-muted py-3">
+            <div className="container">
+                Album example is &copy; Bootstrap, but please download and customize it for yourself!
+            </div>
+        </footer>
       </div>
     );
   }

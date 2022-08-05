@@ -1,0 +1,29 @@
+body {
+  color: #fff;
+  background-color: #0f0526;
+  background-image: url('/media/background_grid.png');
+  background-repeat: repeat;
+}
+
+.navbar {
+  background-color: transparent !important;
+}
+
+.cover {
+  background-image: url('/media/background_grid.png'), url('/media/background_gradient.png');
+  background-repeat: repeat, repeat-x;
+}
+
+.album {
+  background-color: transparent !important;
+}
+
+.card {
+  border-radius: 2px;
+  border-width: 0;
+}
+
+footer {
+  color: #fff;
+  background-color: #000;
+}
